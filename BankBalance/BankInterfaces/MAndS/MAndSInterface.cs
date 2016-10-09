@@ -11,8 +11,10 @@ namespace BankBalance.BankInterfaces.MAndS
     public class MAndSInterface : BankInterface<MAndSConfig>
     {
         private IList<Account> _accounts;
-
         public override IEnumerable<Account> Accounts { get { return _accounts; } }
+
+        private DateTime _lastUpdated;
+        public override DateTime LastUpdated { get { return _lastUpdated; } }
 
         public MAndSInterface(MAndSConfig config) : base(config)
         {
@@ -48,10 +50,12 @@ namespace BankBalance.BankInterfaces.MAndS
                         Balance = new CurrencyValue(currentBalance),
                         Bank = "M&S",
                         Name = accountName,
-                        SortCode = null
+                        SortCode = null,
+                        LastUpdated = DateTime.UtcNow
                     });
                 }
                 _accounts = accounts;
+                _lastUpdated = DateTime.UtcNow;
             }
         }
 

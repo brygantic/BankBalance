@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BankBalance.Accounts;
 
@@ -15,6 +16,8 @@ namespace BankBalance.BankInterfaces
             return Accounts.First(account => account.AccountNumber == accountNumber);
         }
 
+        public abstract DateTime LastUpdated { get; }
+        
         public abstract void LoadAccounts();
 
         protected BankInterface(T config)

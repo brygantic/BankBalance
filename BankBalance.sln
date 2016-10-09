@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBalance", "BankBalance\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBalance.Test", "BankBalance.Tests\BankBalance.Test.csproj", "{09D4E090-C43E-4F3F-B007-7BBEB09CB16B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBalanceWebService", "BankBalanceWebService\BankBalanceWebService.csproj", "{0633B041-B820-48A4-8CB4-070E82A69829}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{09D4E090-C43E-4F3F-B007-7BBEB09CB16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D4E090-C43E-4F3F-B007-7BBEB09CB16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D4E090-C43E-4F3F-B007-7BBEB09CB16B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0633B041-B820-48A4-8CB4-070E82A69829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0633B041-B820-48A4-8CB4-070E82A69829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0633B041-B820-48A4-8CB4-070E82A69829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0633B041-B820-48A4-8CB4-070E82A69829}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

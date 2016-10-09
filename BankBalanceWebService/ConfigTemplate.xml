@@ -1,0 +1,25 @@
+﻿<!-- Save a filled in version of this at "..\..\..\Settings\BankBalanceWebService\SecretWebConfig.config"
+     relative to this file -->
+
+<appSettings>
+  <!-- Halifax -->
+  <add key="HalifaxUserId" value="userid" />
+  <add key="HalifaxPassword" value="password" />
+  <add key="HalifaxMemorableInformation" value="memorableinformation" />
+
+  <!-- M&S -->
+  <add key="MAndSUsername" value="username" />
+  <add key="MAndSPassword" value="password" />
+  <add key="MAndSSecretAnswer" value="secretanswer" />
+  
+  <!-- Santander-->
+  <add key="SantanderUsername" value="username" />
+  <add key="SantanderSecurityAnswers" value="question1=answer1;question2=answer2" />
+  <add key="SantanderPasscode" value="passcode" />
+  <add key="SantanderRegistrationNumber" value="12345" />
+
+  <!-- TSB -->
+  <add key="TsbUserId" value="userid" />
+  <add key="TsbPassword" value="password" />
+  <add key="TsbMemorableInformation" value="memorableinformation" />
+</appSettings>

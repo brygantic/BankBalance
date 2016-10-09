@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -12,18 +13,23 @@ namespace BankBalance.BankInterfaces.MetroBank
     public class MetroBankInterface : BankInterface<MetroBankConfig>
     {
         private IList<Account> _accounts;
+        public override IEnumerable<Account> Accounts { get { return _accounts; } }
+
+        private DateTime _lastUpdated;
+        public override DateTime LastUpdated { get { return _lastUpdated; } }
+
 
         public MetroBankInterface(MetroBankConfig config) : base(config)
         {
         }
-
-        public override IEnumerable<Account> Accounts { get { return _accounts; } }
 
         public override void LoadAccounts()
         {
             Settings.MakeNewIeInstanceVisible = false;
             using (var browser = new IE("https://personal.metrobankonline.co.uk/MetroBankRetail/"))
             {
+                Login(browser);
+
                 var accountsDiv = browser.Div(Find.ById("p1_GRP_0936EF1D3ED8C8E960870"));
 
                 var accounts = new List<Account>();
@@ -36,10 +42,10 @@ namespace BankBalance.BankInterfaces.MetroBank
 
                     var account = new Account
                     {
-                        Bank = Config.BankName,
                         Name = accountName,
                         SortCode = sortCode,
-                        AccountNumber = accountNumber
+                        AccountNumber = accountNumber,
+                        LastUpdated = DateTime.UtcNow
                     };
 
                     // Current Balance
@@ -63,7 +69,23 @@ namespace BankBalance.BankInterfaces.MetroBank
                 }
                    
                 _accounts = accounts;
+                _lastUpdated = DateTime.UtcNow;
             }
+        }
+
+        private void Login(IE browser)
+        {
+            browser.WaitForComplete();
+            Thread.Sleep(1000); // MetroBank tries to load from Cookies, overwriting if we're too quick
+            browser.TextField(Find.ById("USER_NAME")).Value = Config.Username;
+
+            browser.Button(Find.ByTitle("Continue")).Click();
+
+            browser.TextField(Find.ById("LOGIN_PASSWORD")).Value = Config.Password;
+            FillSecurityNumber(browser);
+            browser.Button(Find.ByTitle("Log in")).Click();
+
+            browser.Button(Find.ByTitle("View my accounts")).Click();
         }
 
         private void FillSecurityNumber(IE browser)

@@ -1,9 +1,11 @@
-﻿using BankBalance.Currency;
+﻿using System;
+using BankBalance.Currency;
 
 namespace BankBalance.Accounts
 {
     public class Account
     {
+        public DateTime LastUpdated { get; set; }
         public string Bank { get; set; }
         public string Name { get; set; }
         public CurrencyValue Balance { get; set; }

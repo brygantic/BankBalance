@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BankBalance.Accounts;
 using BankBalance.Currency;
@@ -9,11 +10,10 @@ namespace BankBalance.BankInterfaces.Santander
     public class SantanderInterface : BankInterface<SantanderConfig>
     {
         private IList<Account> _accounts;
+        public override IEnumerable<Account> Accounts { get { return _accounts; } }
 
-        public override IEnumerable<Account> Accounts
-        {
-            get { return _accounts; }
-        }
+        public DateTime _lastUpdated;
+        public override DateTime LastUpdated { get { return _lastUpdated; } }
 
         public SantanderInterface(SantanderConfig config) : base(config)
         {
@@ -47,10 +47,12 @@ namespace BankBalance.BankInterfaces.Santander
                         Balance = new CurrencyValue(currentBalance),
                         Bank = Config.BankName,
                         Name = accountName,
-                        SortCode = sortCode
+                        SortCode = sortCode,
+                        LastUpdated = DateTime.UtcNow
                     });
                 }
                 _accounts = accounts;
+                _lastUpdated = DateTime.UtcNow;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BankBalance.Accounts;
 using BankBalance.Currency;
@@ -9,8 +10,10 @@ namespace BankBalance.BankInterfaces.LloydsGroup.Halifax
     public class HalifaxInterface : BankInterface<HalifaxConfig>
     {
         private IList<Account> _accounts;
-
         public override IEnumerable<Account> Accounts { get { return _accounts; } }
+
+        private DateTime _lastUpdated;
+        public override DateTime LastUpdated { get { return _lastUpdated; } }
 
         public HalifaxInterface(HalifaxConfig config) : base(config)
         {
@@ -44,12 +47,14 @@ namespace BankBalance.BankInterfaces.LloydsGroup.Halifax
                         Balance = new CurrencyValue(currentBalance),
                         Bank = Config.BankName,
                         Name = accountName,
-                        SortCode = sortCode
+                        SortCode = sortCode,
+                        LastUpdated = DateTime.UtcNow
                     });
 
                     accountDivNumber++;
                 }                
                 _accounts = accounts;
+                _lastUpdated = DateTime.UtcNow;
             }
         }
 

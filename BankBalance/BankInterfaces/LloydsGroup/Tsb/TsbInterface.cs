@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using BankBalance.Accounts;
@@ -10,8 +11,10 @@ namespace BankBalance.BankInterfaces.LloydsGroup.Tsb
     public class TsbInterface : BankInterface<TsbConfig>
     {
         private IList<Account> _accounts;
-
         public override IEnumerable<Account> Accounts { get { return _accounts; } }
+
+        private DateTime _lastUpdated;
+        public override DateTime LastUpdated { get { return _lastUpdated; } }
 
         public TsbInterface(TsbConfig config) : base(config)
         {
@@ -41,10 +44,12 @@ namespace BankBalance.BankInterfaces.LloydsGroup.Tsb
                         Balance = new CurrencyValue(matches["balance"].Value),
                         Bank = Config.BankName,
                         Name = matches["accountName"].Value,
-                        SortCode = matches["sortCode"].Value
+                        SortCode = matches["sortCode"].Value,
+                        LastUpdated = DateTime.UtcNow
                     });
                 }
                 _accounts = accounts;
+                _lastUpdated = DateTime.UtcNow;
             }
         }
 
