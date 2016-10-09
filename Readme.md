@@ -1,7 +1,8 @@
 # BankBalance
 
 ## Configure
-Go to the project directory (the directory containing BankBalance.sln) and run the following cmd command:
+Go to the project directory (the directory containing BankBalance.sln) and run the following cmd command
+
     copy BankBalanceWebService\ConfigTemplate.xml ..\..\Settings\BankBalanceWebService\SecretWebConfig.config
     
 Open the file in a text editor and fill in any wanted config. Remove any you don't need.
