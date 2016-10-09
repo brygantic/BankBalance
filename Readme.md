@@ -1,11 +1,23 @@
 # BankBalance
 
 ## Configure
+
+### Locally
 Go to the project directory (the directory containing BankBalance.sln) and run the following cmd command
 
-    copy BankBalanceWebService\ConfigTemplate.xml ..\..\Settings\BankBalanceWebService\SecretWebConfig.config
-    
+    copy BankBalanceWebService\ConfigTemplate.xml ..\Settings\BankBalanceWebService\SecretWebConfig.config
+
+You may need to create the necessary folders.
 Open the file in a text editor and fill in any wanted config. Remove any you don't need.
+
+### On Azure
+* Deploy BankeBalanceWebService from VisualStudio
+* FTP into the server hosting the web service
+* Go to /
+** There should be two folders: LogFiles and site
+* Create a new folder called Settings
+* Within that, create a new folder called BankBalanceWebService
+* Copy your SecretWebConfig.config file to this folder
 
 
 ## Run

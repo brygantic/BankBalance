@@ -131,7 +131,7 @@
     <Compile Include="Dtos\LightAccount.cs" />
     <Compile Include="Config\BankInterfaceConfigManager.cs" />
     <Compile Include="Config\SettingsManager.cs" />
-    <Compile Include="Controllers\BalanceController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +140,7 @@
   <ItemGroup>
     <Content Include="apiapp.json" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <None Include="Properties\PublishProfiles\BankBalance.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
