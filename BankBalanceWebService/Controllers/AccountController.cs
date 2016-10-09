@@ -6,12 +6,12 @@ using BankBalanceWebService.Dtos;
 namespace BankBalanceWebService.Controllers
 {
     [RoutePrefix("account")]
-    public class BalanceController : ApiController
+    public class AccountController : ApiController
     {
         [HttpGet]
-        [Route("{accountNumber}/balance")]
+        [Route("{accountNumber}")]
         [ResponseType(typeof(LightAccount))]
-        public IHttpActionResult GetBalance(string accountNumber)
+        public IHttpActionResult GetAccount(string accountNumber)
         {
             // Yes, accountNumber is not necessarily unique, but it's unique enough for now
 
